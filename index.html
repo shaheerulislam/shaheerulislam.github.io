@@ -324,6 +324,23 @@
   .job li{margin-bottom:7px;}
   .job li::marker{color:var(--amber);}
 
+  /* ---------- Testimonials ---------- */
+  .testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;}
+  @media (max-width:800px){.testi-grid{grid-template-columns:1fr;}}
+  .testi-card{
+    border:1px solid var(--border-soft);border-radius:var(--radius);
+    padding:26px;background:var(--panel-2);position:relative;
+  }
+  .testi-quote-mark{
+    font-family:var(--font-display);font-size:48px;color:var(--amber);
+    opacity:.35;line-height:1;margin-bottom:4px;
+  }
+  .testi-text{font-size:14px;color:var(--text-dim);line-height:1.65;}
+  .testi-person{margin-top:18px;display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--border-soft);padding-top:14px;}
+  .testi-name{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--text);}
+  .testi-role{font-size:12px;color:var(--text-dimmer);}
+  .testi-context{font-family:var(--font-mono);font-size:10.5px;color:var(--cyan);margin-top:4px;}
+
   /* ---------- Footer / contact ---------- */
   footer{padding:80px 0 60px;text-align:center;}
   .footer-cta h2{font-size:clamp(28px,4vw,40px);}
@@ -347,6 +364,7 @@
       <a href="#labs">Labs</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
+      <a href="#recommendations">Recommendations</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -369,6 +387,7 @@
       <a class="btn btn-primary" href="mailto:shaheerulislamkarim@gmail.com">Get in touch</a>
       <a class="btn btn-ghost" href="https://github.com/shaheerulislam" target="_blank" rel="noopener">GitHub</a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/shaheer-ul-islam/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://kc7cyber.com/profile/10fa994e" target="_blank" rel="noopener">KC7</a>
     </div>
 
     <div class="stat-strip">
@@ -648,9 +667,12 @@
       </div>
       <ul>
         <li>Delivered SOC monitoring and incident triage for small business clients, investigating 30+ security events per month across Microsoft Sentinel, Splunk, and Wazuh.</li>
-        <li>Built and tuned 10+ SIEM detection rules, reducing false-positive noise by an estimated 30%.</li>
-        <li>Configured SOAR playbook automations, cutting average investigation time by 25%.</li>
-        <li>Managed Microsoft 365 / Azure AD identities and IAM controls, enforcing MFA and conditional access.</li>
+        <li>Analysed Windows Event Logs (Event IDs 4624, 4625, 4648, 4720) to detect authentication failures, brute-force patterns, and privilege escalation attempts mapped to MITRE ATT&CK TTPs.</li>
+        <li>Built and tuned 10+ SIEM detection rules, reducing false-positive noise by an estimated 30% and improving alert fidelity and triage efficiency.</li>
+        <li>Executed SOC Tier 1 workflows: alert prioritisation, escalation decisions, and structured incident documentation aligned with ITIL practices.</li>
+        <li>Configured SOAR playbook automations to accelerate response to recurring alert types, cutting average investigation time by 25%.</li>
+        <li>Managed Microsoft 365 / Azure AD identities and IAM controls, enforcing MFA and conditional access policies for client environments.</li>
+        <li>Set up and supported a client website (ai-reachoutsolutions.com), bringing the same attention to detail to broader technical delivery work.</li>
       </ul>
     </div>
 
@@ -660,9 +682,71 @@
         <div class="job-date">Jun 2021 – Jun 2022</div>
       </div>
       <ul>
-        <li>Resolved 20–30 support tickets per week with a 95%+ first-call resolution rate.</li>
-        <li>Administered Active Directory accounts for 50+ users, including access control and IAM.</li>
+        <li>Resolved 20–30 support tickets per week with a 95%+ first-call resolution rate, handling L1/L2 hardware, software, Windows, and networking incidents within SLA targets.</li>
+        <li>Administered Active Directory accounts for 50+ users, including account provisioning, password resets, group policy, and access control (IAM).</li>
+        <li>Maintained structured incident records and knowledge base documentation aligned with ITIL v4 service management practices.</li>
       </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">IT Technical Roles (Early Career)</span> <span class="job-org">— East West Trade, EFA School, Digital Marketing Agency, Pakistan Post Office</span></div>
+        <div class="job-date">2019 – 2021</div>
+      </div>
+      <ul>
+        <li>Delivered first-line IT support across four organisations, covering hardware, software, networking, and user-access requirements for 100+ end users.</li>
+        <li>Troubleshot Windows, network, application, and peripheral issues, escalating complex incidents where required.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="recommendations">
+    <div class="section-head">
+      <div class="section-eyebrow">From Colleagues & Clients</div>
+      <h2>What people say about working with me</h2>
+      <p class="section-desc">LinkedIn recommendations from classmates and clients I've worked with directly.</p>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">I worked with Shaheer in a freelance capacity, where he provided Security Operations Center support, including cybersecurity monitoring, SIEM log analysis, and incident investigation. His journey is genuinely impressive &mdash; he moved from Pakistan to build his career here, balancing his studies with part-time work while supporting his family. That discipline shows in how he works: methodical, reliable, and always keen to improve. I'm happy to recommend Shaheer for SOC Analyst roles.</p>
+        <div class="testi-person">
+          <div class="testi-name">Zafar Mahmood</div>
+          <div class="testi-role">Senior Business Analyst | Product Owner (PSPO I) | AI Automation Consultant</div>
+          <div class="testi-context">Managed Shaheer directly (freelance client)</div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">I highly recommend Shaheer to any team seeking an exceptional cyber security operation analyst. He is undoubtedly one of the most dedicated professionals I know. Shaheer brings a rare combination of soft skills and deep technical expertise &mdash; a natural problem-solver, a dependable collaborator, and someone who consistently elevates the performance of those around him.</p>
+        <div class="testi-person">
+          <div class="testi-name">Junaid Karim</div>
+          <div class="testi-role">Senior Data Solution Architect</div>
+          <div class="testi-context">Worked with Shaheer on the same team</div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">I had the pleasure of studying alongside Shaheer during our MSc in Cybersecurity at Birmingham City University. He consistently demonstrated a strong commitment to learning and excellence, with great interest in security operations, threat analysis, and incident response. His collaborative nature, problem-solving mindset, and determination to continuously improve make him a valuable asset to any cybersecurity team.</p>
+        <div class="testi-person">
+          <div class="testi-name">Areeba Sabahat</div>
+          <div class="testi-role">SOC Analyst | Microsoft Sentinel | Splunk | Blue Team Labs</div>
+          <div class="testi-context">Studied together, MSc Cybersecurity</div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <p class="testi-text">I have known Shaheer as both a classmate and a friend, and one thing that has always stood out is his passion for cybersecurity. His practical experience in SOC operations, SIEM technologies, threat detection, and cloud security demonstrates the effort he has invested in building real-world expertise. He is approachable, dependable, and a great team player.</p>
+        <div class="testi-person">
+          <div class="testi-name">Sohail Ahmad</div>
+          <div class="testi-role">Artificial Intelligence Engineer | Cyber Security | Software Engineer</div>
+          <div class="testi-context">Studied together</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -677,6 +761,7 @@
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/shaheer-ul-islam/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn btn-ghost" href="https://github.com/shaheerulislam" target="_blank" rel="noopener">GitHub</a>
         <a class="btn btn-ghost" href="https://www.credly.com/users/shaheer-ul-islam" target="_blank" rel="noopener">Credly</a>
+        <a class="btn btn-ghost" href="https://kc7cyber.com/profile/10fa994e" target="_blank" rel="noopener">KC7</a>
       </div>
       <div class="foot-note">Built with Splunk, Sysmon, Atomic Red Team &amp; a lot of debugging. // United Kingdom</div>
     </footer>
