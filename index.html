@@ -66,43 +66,9 @@
 
   .wrap{max-width:1100px;margin:0 auto;padding:0 28px;}
 
-  /* ---------- Ticker (signature element) ---------- */
-  .ticker-outer{
-    position:sticky;top:0;z-index:50;
-    background:#080C16;
-    border-bottom:1px solid var(--border-soft);
-    overflow:hidden;
-    white-space:nowrap;
-    padding:9px 0;
-  }
-  .ticker-track{
-    display:inline-flex;
-    animation:tickerScroll 42s linear infinite;
-  }
-  @media (prefers-reduced-motion: reduce){
-    .ticker-track{animation:none;}
-    .ticker-outer{overflow-x:auto;}
-  }
-  .ticker-item{
-    display:inline-flex;align-items:center;gap:10px;
-    font-family:var(--font-mono);
-    font-size:12.5px;
-    color:var(--text-dim);
-    padding:0 26px;
-    border-left:1px solid var(--border-soft);
-  }
-  .ticker-dot{width:7px;height:7px;border-radius:50%;flex:none;}
-  .ticker-item b{color:var(--text);font-weight:600;}
-  .ticker-item .ttime{color:var(--text-dimmer);}
-
-  @keyframes tickerScroll{
-    0%{transform:translateX(0);}
-    100%{transform:translateX(-50%);}
-  }
-
   /* ---------- Nav ---------- */
   nav{
-    position:sticky;top:31px;z-index:49;
+    position:sticky;top:0;z-index:49;
     background:rgba(10,15,28,0.86);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--border-soft);
@@ -141,6 +107,38 @@
 
   /* ---------- Hero ---------- */
   header.hero{padding:96px 0 80px;}
+  .hero-grid{display:flex;align-items:center;gap:60px;}
+  .hero-copy{min-width:0;flex:1 1 0;}
+  .hero-photo-wrap{position:relative;flex:0 0 340px;width:340px;}
+  .hero-photo-frame{
+    position:relative;border-radius:14px;overflow:hidden;
+    border:1px solid var(--border);background:var(--panel);
+    box-shadow:0 30px 70px -30px rgba(0,0,0,0.6), 0 0 0 1px rgba(242,184,39,0.08), 0 0 60px -20px rgba(242,184,39,0.18);
+  }
+  .hero-photo-frame::before{
+    content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg, rgba(10,15,28,0.05) 0%, rgba(10,15,28,0) 22%, rgba(10,15,28,0) 72%, rgba(10,15,28,0.55) 100%);
+  }
+  .hero-photo-frame img{
+    display:block;width:100%;height:100%;object-fit:cover;
+    filter:saturate(1.03) contrast(1.02);
+  }
+  .hero-photo-placeholder{
+    display:flex;align-items:center;justify-content:center;
+    width:100%;aspect-ratio:4/5;
+    background:radial-gradient(circle at 50% 35%, rgba(242,184,39,0.10), transparent 60%), var(--panel-2);
+    font-family:var(--font-display);font-size:64px;font-weight:700;color:var(--border);
+  }
+  .hero-photo-caption{
+    position:absolute;left:14px;right:14px;bottom:12px;z-index:3;
+    font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  .hero-photo-caption b{color:var(--text);font-weight:600;}
+  @media (max-width:860px){
+    .hero-grid{flex-direction:column;gap:36px;}
+    .hero-photo-wrap{max-width:340px;width:100%;order:-1;}
+  }
   .eyebrow{
     font-family:var(--font-mono);font-size:13px;color:var(--cyan);
     letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;
@@ -168,6 +166,28 @@
     border:1px solid var(--border);padding:6px 12px;border-radius:20px;
   }
   .hero-ctas{margin-top:38px;display:flex;flex-wrap:wrap;gap:14px;}
+  .hero-proof{
+    margin-top:44px;display:flex;flex-wrap:wrap;gap:0;
+    border-top:1px solid var(--border-soft);padding-top:24px;
+  }
+  .hero-proof-item{
+    padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--border-soft);
+  }
+  .hero-proof-item:last-child{border-right:none;margin-right:0;padding-right:0;}
+  .hero-proof-num{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--amber);line-height:1;}
+  .hero-proof-label{font-size:12px;color:var(--text-dim);margin-top:6px;max-width:130px;line-height:1.4;}
+  @media (max-width:600px){
+    .hero-proof{gap:20px 0;}
+    .hero-proof-item{flex:0 0 46%;border-right:none;padding-right:0;margin-right:0;}
+  }
+  .about-grid{
+    margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;max-width:760px;
+  }
+  .about-fact{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border-soft);}
+  .about-fact .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex:none;margin-top:8px;}
+  .about-fact-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dimmer);}
+  .about-fact-value{color:var(--text);font-size:14.5px;line-height:1.5;margin-top:3px;}
+  @media (max-width:700px){ .about-grid{grid-template-columns:1fr;} }
   .btn{
     font-family:var(--font-body);font-weight:600;font-size:14.5px;
     padding:12px 22px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;
@@ -375,21 +395,16 @@
 </head>
 <body>
 
-<div class="ticker-outer" role="marquee" aria-label="Simulated detection feed">
-  <div class="ticker-track" id="tickerTrack"></div>
-</div>
-
 <nav>
   <div class="nav-inner">
     <div class="nav-mark">Shaheer<span class="blink"></span></div>
     <div class="nav-links" id="navLinks">
-      <a href="#flagship">Flagship Lab</a>
-      <a href="#projects">Projects</a>
-      <a href="#labs">Labs</a>
-      <a href="#skills">Skills</a>
+      <a href="#summary">About Us</a>
       <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
       <a href="#recommendations">Recommendations</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact">Contact Us</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -400,43 +415,148 @@
 <div class="wrap">
 
   <header class="hero">
-    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(83,160,81,0.12);border:1px solid rgba(83,160,81,0.35);border-radius:20px;padding:6px 14px;margin-bottom:24px;">
-      <span style="width:7px;height:7px;border-radius:50%;background:var(--green);flex:none;"></span>
-      <span style="font-family:var(--font-mono);font-size:12px;color:var(--green);">Open to new opportunities</span>
-    </div>
-    <h1>Shaheer Ul Islam builds detections, not just dashboards<span class="accent">.</span></h1>
-    <p class="hero-sub">Cybersecurity professional with 3+ years across SIEM monitoring, alert triage, and detection engineering — mapping real attack simulations to MITRE ATT&CK in Splunk, Microsoft Sentinel, and AWS.</p>
-    <div class="hero-roles">
-      <span class="role-chip">SOC Analyst</span>
-      <span class="role-chip">Threat Analyst</span>
-      <span class="role-chip">Cybersecurity Analyst</span>
-      <span class="role-chip">Cybersecurity Engineer</span>
-      <span class="role-chip">Blue Team</span>
-    </div>
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="mailto:shaheerulislamkarim@gmail.com">Get in touch</a>
-      <a class="btn btn-ghost" href="https://github.com/shaheerulislam" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/shaheer-ul-islam/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-ghost" href="https://kc7cyber.com/profile/10fa994e" target="_blank" rel="noopener">KC7</a>
+    <div class="hero-grid">
+      <div class="hero-copy" style="flex:1 1 100%;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(83,160,81,0.12);border:1px solid rgba(83,160,81,0.35);border-radius:20px;padding:6px 14px;margin-bottom:24px;">
+          <span style="width:7px;height:7px;border-radius:50%;background:var(--green);flex:none;"></span>
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--green);">Open to new opportunities</span>
+        </div>
+        <h1>Shaheer Ul Islam builds detections, not just dashboards<span class="accent">.</span></h1>
+        <p class="hero-sub">Cybersecurity professional with 3+ years across SIEM monitoring, alert triage, and detection engineering — mapping real attack simulations to MITRE ATT&CK in Splunk, Microsoft Sentinel, and AWS.</p>
+        <div class="hero-roles">
+          <span class="role-chip">SOC Analyst</span>
+          <span class="role-chip">Threat Analyst</span>
+          <span class="role-chip">Cybersecurity Analyst</span>
+          <span class="role-chip">Cybersecurity Engineer</span>
+          <span class="role-chip">Blue Team</span>
+        </div>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="mailto:shaheerulislamkarim@gmail.com">Get in touch</a>
+          <a class="btn btn-ghost" href="https://github.com/shaheerulislam" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/shaheer-ul-islam/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://kc7cyber.com/profile/10fa994e" target="_blank" rel="noopener">KC7</a>
+        </div>
+        <div class="hero-proof">
+          <div class="hero-proof-item"><div class="hero-proof-num">3+</div><div class="hero-proof-label">Years in IT & security operations</div></div>
+          <div class="hero-proof-item"><div class="hero-proof-num">30+</div><div class="hero-proof-label">Security events triaged monthly</div></div>
+          <div class="hero-proof-item"><div class="hero-proof-num">30%</div><div class="hero-proof-label">False-positive reduction delivered</div></div>
+          <div class="hero-proof-item"><div class="hero-proof-num">MSc</div><div class="hero-proof-label">Cybersecurity, Birmingham City University</div></div>
+        </div>
+      </div>
     </div>
   </header>
 
   <section id="summary" style="padding-top:0;">
     <div class="section-head">
-      <div class="section-eyebrow">Professional Summary</div>
-      <h2>Cybersecurity analyst who ships working detections</h2>
+      <div class="section-eyebrow">About Us</div>
+      <h2>Cybersecurity Analyst focused on practical detection engineering</h2>
     </div>
-    <p style="color:var(--text-dim);font-size:16px;max-width:760px;line-height:1.75;">
-      Cybersecurity professional with 3+ years of combined IT and security operations experience across SIEM monitoring, alert triage, incident response, and threat detection using Microsoft Sentinel, Splunk, Wazuh, and AWS CloudTrail. Skilled in analysing Windows Event Logs, mapping detections to MITRE ATT&CK, and applying networking fundamentals alongside cloud security principles across AWS, Azure, and Microsoft 365. Experienced in identity and access management, security compliance frameworks (GDPR, ISO 27001, PCI DSS, NIST CSF), detection engineering, and communicating findings clearly to technical and non-technical stakeholders. Holds an MSc in Cybersecurity (Birmingham City University) plus IBM and Google Cybersecurity Professional Certificates. Right to work in the UK; adaptable to SOC, blue team, threat analyst, cybersecurity engineer, and broader security analyst roles, including shift-based environments.
+    <p style="color:var(--text);font-size:17px;max-width:760px;line-height:1.75;margin-bottom:8px;">
+      My interest in cybersecurity is rooted in outcomes: turning raw log data into detections that an analyst can act on with confidence. I specialise in detection engineering — designing and tuning detection rules, reducing alert noise, and mapping findings to the MITRE ATT&CK framework so each alert carries clear, actionable context.
     </p>
+    <p style="color:var(--text-dim);font-size:15.5px;max-width:760px;line-height:1.7;margin-bottom:6px;">
+      3+ years of combined IT and security operations experience. Core areas of expertise:
+    </p>
+    <div class="about-grid">
+      <div class="about-fact">
+        <span class="dot"></span>
+        <div>
+          <div class="about-fact-label">SIEM & Detection</div>
+          <div class="about-fact-value">Microsoft Sentinel, Splunk, and Wazuh, applied to alert triage, incident response, and detection engineering</div>
+        </div>
+      </div>
+      <div class="about-fact">
+        <span class="dot"></span>
+        <div>
+          <div class="about-fact-label">Frameworks & Compliance</div>
+          <div class="about-fact-value">MITRE ATT&CK mapping; GDPR, ISO 27001, PCI DSS, and NIST CSF compliance frameworks</div>
+        </div>
+      </div>
+      <div class="about-fact">
+        <span class="dot"></span>
+        <div>
+          <div class="about-fact-label">Identity & Cloud</div>
+          <div class="about-fact-value">Azure AD and Microsoft 365 identity management, conditional access and MFA, AWS and Azure security fundamentals</div>
+        </div>
+      </div>
+      <div class="about-fact">
+        <span class="dot"></span>
+        <div>
+          <div class="about-fact-label">Education & Certifications</div>
+          <div class="about-fact-value">MSc in Cybersecurity, Birmingham City University; IBM and Google Cybersecurity Professional Certificates</div>
+        </div>
+      </div>
+      <div class="about-fact">
+        <span class="dot"></span>
+        <div>
+          <div class="about-fact-label">Communication</div>
+          <div class="about-fact-value">Experienced in presenting technical findings clearly to both technical and non-technical stakeholders</div>
+        </div>
+      </div>
+      <div class="about-fact">
+        <span class="dot"></span>
+        <div>
+          <div class="about-fact-label">Availability</div>
+          <div class="about-fact-value">Full right to work in the UK; open to SOC, blue team, threat analyst, and cybersecurity engineer roles, including shift-based work</div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="flagship">
+  <section id="experience">
     <div class="section-head">
-      <div class="section-eyebrow">Flagship Project</div>
-      <h2>Sysmon + Splunk Detection Engineering Lab</h2>
-      <p class="section-desc">A complete SOC environment: real telemetry, real simulated attacks, real detections — built end to end, debugged end to end, documented end to end.</p>
+      <div class="section-eyebrow">Background</div>
+      <h2>Experience</h2>
     </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">Security Operations Analyst</span> <span class="job-org">— Self-Employed (Freelance)</span></div>
+        <div class="job-date">Oct 2023 – Present</div>
+      </div>
+      <ul>
+        <li>Delivered SOC monitoring and incident triage for small business clients, investigating 30+ security events per month across Microsoft Sentinel, Splunk, and Wazuh.</li>
+        <li>Analysed Windows Event Logs (Event IDs 4624, 4625, 4648, 4720) to detect authentication failures, brute-force patterns, and privilege escalation attempts mapped to MITRE ATT&CK TTPs.</li>
+        <li>Built and tuned 10+ SIEM detection rules, reducing false-positive noise by an estimated 30% and improving alert fidelity and triage efficiency.</li>
+        <li>Executed SOC Tier 1 workflows: alert prioritisation, escalation decisions, and structured incident documentation aligned with ITIL practices.</li>
+        <li>Configured SOAR playbook automations to accelerate response to recurring alert types, cutting average investigation time by 25%.</li>
+        <li>Managed Microsoft 365 / Azure AD identities and IAM controls, enforcing MFA and conditional access policies for client environments.</li>
+        <li>Set up and supported a client website (ai-reachoutsolutions.com), bringing the same attention to detail to broader technical delivery work.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">IT Support Assistant</span> <span class="job-org">— New Era OS</span></div>
+        <div class="job-date">Jun 2021 – Jun 2022</div>
+      </div>
+      <ul>
+        <li>Resolved 20–30 support tickets per week with a 95%+ first-call resolution rate, handling L1/L2 hardware, software, Windows, and networking incidents within SLA targets.</li>
+        <li>Administered Active Directory accounts for 50+ users, including account provisioning, password resets, group policy, and access control (IAM).</li>
+        <li>Maintained structured incident records and knowledge base documentation aligned with ITIL v4 service management practices.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><span class="job-title">IT Technical Roles (Early Career)</span> <span class="job-org">— East West Trade, EFA School, Digital Marketing Agency, Pakistan Post Office</span></div>
+        <div class="job-date">2019 – 2021</div>
+      </div>
+      <ul>
+        <li>Delivered first-line IT support across four organisations, covering hardware, software, networking, and user-access requirements for 100+ end users.</li>
+        <li>Troubleshot Windows, network, application, and peripheral issues, escalating complex incidents where required.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <div class="section-eyebrow">Projects</div>
+      <h2>Detection engineering, SIEM & cloud security work</h2>
+      <p class="section-desc">A complete SOC environment I built end to end, plus a set of focused projects across SIEM, cloud security, and automation.</p>
+    </div>
+
+    <div class="section-eyebrow" style="margin-bottom:8px;">Featured — Sysmon + Splunk Detection Engineering Lab</div>
 
     <div class="stat-strip" style="margin-bottom:48px;">
       <div class="stat"><div class="stat-num">6</div><div class="stat-label">Detections built & mapped to MITRE ATT&CK</div></div>
@@ -510,14 +630,10 @@
         <span>Splunk &middot; Search &amp; Reporting</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="projects">
-    <div class="section-head">
-      <div class="section-eyebrow">Other Projects</div>
-      <h2>SIEM, cloud security & automation</h2>
-      <p class="section-desc">A selection of independent projects covering the range a SOC or blue team role actually touches: on-prem SIEM, cloud log analysis, SOAR automation, and applied detection logic.</p>
-    </div>
+  <div class="section-eyebrow" style="margin:64px 0 8px;">Other Projects</div>
+  <p class="section-desc" style="margin-bottom:32px;">A selection of independent projects covering the range a SOC or blue team role actually touches: on-prem SIEM, cloud log analysis, SOAR automation, and applied detection logic.</p>
 
     <div class="proj-grid">
       <div class="card">
@@ -696,51 +812,6 @@
     </div>
   </section>
 
-  <section id="experience">
-    <div class="section-head">
-      <div class="section-eyebrow">Background</div>
-      <h2>Experience</h2>
-    </div>
-
-    <div class="job">
-      <div class="job-head">
-        <div><span class="job-title">Security Operations Analyst</span> <span class="job-org">— Self-Employed (Freelance)</span></div>
-        <div class="job-date">Oct 2023 – Present</div>
-      </div>
-      <ul>
-        <li>Delivered SOC monitoring and incident triage for small business clients, investigating 30+ security events per month across Microsoft Sentinel, Splunk, and Wazuh.</li>
-        <li>Analysed Windows Event Logs (Event IDs 4624, 4625, 4648, 4720) to detect authentication failures, brute-force patterns, and privilege escalation attempts mapped to MITRE ATT&CK TTPs.</li>
-        <li>Built and tuned 10+ SIEM detection rules, reducing false-positive noise by an estimated 30% and improving alert fidelity and triage efficiency.</li>
-        <li>Executed SOC Tier 1 workflows: alert prioritisation, escalation decisions, and structured incident documentation aligned with ITIL practices.</li>
-        <li>Configured SOAR playbook automations to accelerate response to recurring alert types, cutting average investigation time by 25%.</li>
-        <li>Managed Microsoft 365 / Azure AD identities and IAM controls, enforcing MFA and conditional access policies for client environments.</li>
-        <li>Set up and supported a client website (ai-reachoutsolutions.com), bringing the same attention to detail to broader technical delivery work.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="job-head">
-        <div><span class="job-title">IT Support Assistant</span> <span class="job-org">— New Era OS</span></div>
-        <div class="job-date">Jun 2021 – Jun 2022</div>
-      </div>
-      <ul>
-        <li>Resolved 20–30 support tickets per week with a 95%+ first-call resolution rate, handling L1/L2 hardware, software, Windows, and networking incidents within SLA targets.</li>
-        <li>Administered Active Directory accounts for 50+ users, including account provisioning, password resets, group policy, and access control (IAM).</li>
-        <li>Maintained structured incident records and knowledge base documentation aligned with ITIL v4 service management practices.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="job-head">
-        <div><span class="job-title">IT Technical Roles (Early Career)</span> <span class="job-org">— East West Trade, EFA School, Digital Marketing Agency, Pakistan Post Office</span></div>
-        <div class="job-date">2019 – 2021</div>
-      </div>
-      <ul>
-        <li>Delivered first-line IT support across four organisations, covering hardware, software, networking, and user-access requirements for 100+ end users.</li>
-        <li>Troubleshot Windows, network, application, and peripheral issues, escalating complex incidents where required.</li>
-      </ul>
-    </div>
-  </section>
 
   <section id="recommendations">
     <div class="section-head">
@@ -795,8 +866,10 @@
   <section id="contact">
     <footer>
       <div class="footer-cta">
+        <div class="section-eyebrow" style="margin-bottom:14px;">Get in touch</div>
         <h2>Let's talk about a SOC, blue team, or detection engineering role.</h2>
-        <p class="footer-sub">Open to SOC Analyst, Threat Analyst, Cybersecurity Analyst, Cybersecurity Engineer, and Blue Team roles. Right to work in the UK.</p>
+        <p class="footer-sub">I reply to every message myself, usually within a day. If you're hiring, forwarding my details to a colleague, or just want to talk detection engineering — reach out, I'd genuinely like to hear from you.</p>
+        <p class="footer-sub" style="margin-top:10px;">Open to SOC Analyst, Threat Analyst, Cybersecurity Analyst, Cybersecurity Engineer, and Blue Team roles. Right to work in the UK.</p>
       </div>
       <div class="footer-links">
         <a class="btn btn-primary" href="mailto:shaheerulislamkarim@gmail.com">shaheerulislamkarim@gmail.com</a>
@@ -811,26 +884,6 @@
 </div>
 
 <script>
-  const feed = [
-    {t:'T1082', d:'System Information Discovery — systeminfo.exe via cmd', c:'var(--blue)'},
-    {t:'T1059.001', d:'Encoded PowerShell command execution detected', c:'var(--amber)'},
-    {t:'T1047', d:'PowerShell spawned via WmiPrvSE.exe', c:'var(--violet)'},
-    {t:'T1003.005', d:'Credential Manager access via rundll32/keymgr.dll', c:'var(--red)'},
-    {t:'T1053.005', d:'Scheduled task persistence created (SYSTEM)', c:'#7FBF6E'},
-    {t:'T1055/T1003', d:'Process injection tooling quarantined by Defender', c:'var(--orange)'},
-  ];
-  const track = document.getElementById('tickerTrack');
-  function renderFeed(){
-    let html = '';
-    for(let pass=0; pass<2; pass++){
-      feed.forEach(item=>{
-        html += `<span class="ticker-item"><span class="ticker-dot" style="background:${item.c}"></span><span class="ttime">SOC-Lab-Win11</span><b>${item.t}</b>${item.d}</span>`;
-      });
-    }
-    track.innerHTML = html;
-  }
-  renderFeed();
-
   // Mobile nav toggle
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
