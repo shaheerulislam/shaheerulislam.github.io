@@ -954,7 +954,7 @@
       <div class="lab-card cloud">
         <div class="lab-cat">KC7 Cyber</div>
         <div class="lab-title">Security Analyst I and II badges &middot; Level 36</div>
-        <div class="lab-desc">13 investigation modules completed across phishing, inbox-rule abuse, KQL log investigation, VirusTotal pivoting, decoding, and network analysis. Ranked #940 globally.</div>
+        <div class="lab-desc">13 investigation modules completed across phishing, inbox-rule abuse, KQL log investigation, VirusTotal pivoting, decoding, and network analysis.</div>
         <div class="lab-tools"><a href="https://kc7cyber.com/profile/10fa994e" target="_blank" rel="noopener" style="color:var(--cyan);">View KC7 profile &rarr;</a></div>
       </div>
     </div>
@@ -1090,20 +1090,6 @@
       navToggle.setAttribute('aria-expanded', 'false');
     });
   });
-
-  // Copy email
-  const copyBtn = document.getElementById('copyEmail');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('shaheerulislamkarim@gmail.com');
-        copyBtn.textContent = 'Copied';
-      } catch (e) {
-        copyBtn.textContent = 'shaheerulislamkarim@gmail.com';
-      }
-      setTimeout(() => { copyBtn.textContent = 'Copy email'; }, 2200);
-    });
-  }
 
   // Highlight the current section in the nav
   const sectionLinks = [...navLinks.querySelectorAll('a[href^="#"]')];
